@@ -1,0 +1,20 @@
+<mat-dialog-content>
+    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+    <mat-label>Brand Name</mat-label>
+    <input matInput formControlName="bname" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Category ID</mat-label>
+    <input matInput formControlName="categoryid" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <input matInput formControlName="status" required>
+    </mat-form-field>
+    <div mat-dialog-actions>
+    <button mat-button type="submit">{{ action === 'add' ? 'Add' : 'Update' }}</button>
+    <button mat-button mat-dialog-close>Close</button>
+    </div>
+    </form>
+    </mat-dialog-content>

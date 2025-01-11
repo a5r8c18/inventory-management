@@ -1,0 +1,26 @@
+<mat-dialog-content>
+    <form (ngSubmit)="addPurchase(purchaseForm.value)" #purchaseForm="ngForm">
+    <mat-form-field appearance="fill">
+    <mat-label>Product Name</mat-label>
+    <mat-select name="product" required ngModel>
+    <mat-option value="">Select Product</mat-option>
+    <!-- Populate options dynamically -->
+    </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Product Quantity</mat-label>
+    <input matInput type="text" name="quantity" required pattern="[+-]?([0-9]*[.])?[0-9]+" ngModel>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Supplier</mat-label>
+    <mat-select name="supplierid" required ngModel>
+    <mat-option value="">Select Supplier</mat-option>
+    <!-- Populate options dynamically -->
+    </mat-select>
+    </mat-form-field>
+    <div mat-dialog-actions>
+    <button mat-button type="submit">Add</button>
+    <button mat-button mat-dialog-close>Close</button>
+    </div>
+    </form>
+    </mat-dialog-content>

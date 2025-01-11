@@ -1,0 +1,111 @@
+.container {
+  padding: 20px;
+  
+  h3 {
+  margin-bottom: 20px;
+  color: rgb(65, 1, 1); // Color rojo oscuro
+  }
+  
+  button[mat-raised-button] {
+  margin-bottom: 20px;
+  color: white;
+  background-color: #7b1f1f; // Rojo vino
+  }
+  
+  ngx-datatable {
+  width: 100%;
+  margin-top: 20px;
+  
+  
+  .datatable-header {
+  background-color: #410202; // Rojo vino oscuro
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  }
+  
+  .datatable-body {
+  tr {
+  &:nth-child(even) {
+  background-color: #f9f9f9; // Fondo blanco claro
+  }
+  
+  &:nth-child(odd) {
+  background-color: #ffffff; // Fondo blanco
+  }
+  
+  &:hover {
+  background-color: #e0e0e0; // Fondo gris claro al pasar el ratón
+  }
+  
+  td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  border: 1px solid #cccccc; // Borde gris claro
+  color: #333333; // Texto gris oscuro
+  }
+  }
+  }
+  
+  .datatable-footer {
+  background-color: #410202; // Rojo vino oscuro
+  color: white;
+  padding: 10px;
+  text-align: center;
+  }
+  
+  .datatable-pager {
+  .pager-button {
+  background-color: #7b1f1f; // Rojo vino
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  
+  &:hover {
+  background-color: #4b0e0e; // Rojo vino más oscuro
+  }
+  
+  &.active {
+  background-color: #4b0e0e; // Rojo vino más oscuro
+  font-weight: bold;
+  }
+  }
+  }
+  }
+  
+  mat-card {
+  background-color: white; // Fondo blanco para la tarjeta
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  
+  .mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  h3 {
+  margin: 0;
+  color: rgb(65, 1, 1); // Color rojo oscuro
+  }
+  
+  button[mat-raised-button] {
+  color: white;
+  background-color: #7b1f1f; // Rojo vino
+  }
+  }
+  
+  .mat-card-content {
+  padding: 0;
+  }
+  }
+  
+  .text-end {
+  text-align: end;
+  }
+  }

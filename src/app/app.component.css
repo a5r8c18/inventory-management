@@ -1,0 +1,28 @@
+/* Estilo para la barra de navegación */
+.navbar.custom-bg {
+    background-color: #800020; /* Rojo vino */
+    color: white;
+    border-bottom: 2px solid #4b0e0e; /* Borde inferior más oscuro */
+    }
+    
+    .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    }
+    
+    .navbar-brand:hover {
+    color: #f0e68c; /* Color dorado claro al pasar el ratón */
+    }
+    
+    
+    .footer {
+        background-color: #343a40; /* Fondo oscuro */
+        color: white; /* Texto blanco */
+        text-align: center; /* Texto centrado */
+        padding: 1rem 0; /* Espaciado vertical */
+        }
+        
+        .footer p {
+        margin: 0; /* Sin margen */
+        }

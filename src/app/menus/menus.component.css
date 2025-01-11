@@ -1,0 +1,69 @@
+mat-toolbar {
+    background-color: #660000; /* Color primario */
+    color: #ffffff; /* Color del texto */
+    padding: 0 20px;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    }
+    
+    .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    height: 100%;
+    }
+    
+    .navbar-nav {
+    display: flex;
+    flex-direction: row; /* Asegura que los elementos estén en línea */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+    
+    .nav-item {
+    margin-right: 20px;
+    }
+    
+    .nav-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    }
+    
+    .nav-item a:hover {
+    color: #ffcc00; /* Color de hover */
+    }
+    
+    .badge {
+    background-color: #ffffff;
+    color: #003366;
+    font-weight: bold;
+    }
+    
+    .badge .count {
+    background-color: #ff0000; /* Color de la notificación */
+    color: #ffffff;
+    }
+    
+    .dropdown button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    
+    .dropdown button:hover {
+    color: #ffcc00; /* Color de hover */
+    }
+    
+    .mat-menu-item {
+    color: #4d0a0a;
+    }
+    
+    .mat-menu-item:hover {
+    background-color: #ffcc00; /* Color de hover */
+    color: #660000;
+    }

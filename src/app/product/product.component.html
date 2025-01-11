@@ -1,0 +1,102 @@
+<div class="container">
+    <app-menus></app-menus>
+    <mat-card>
+        <div class="mat-card-header">
+            <h3>Product List</h3>
+            <button mat-raised-button color="primary" (click)="openProductDialog()">Add Product</button>
+        </div>
+        <div class="mat-card-content">
+            <ngx-datatable
+                class="bootstrap"
+                [rows]="products"
+                [columns]="[
+                    { prop: 'id', name: 'ID' },
+                    { prop: 'category', name: 'Categoría' },
+                    { prop: 'brand', name: 'Marca' },
+                    { prop: 'name', name: 'Nombre del producto' },
+                    { prop: 'model', name: 'Modelo del producto' },
+                    { prop: 'quantity', name: 'Cantidad' },
+                    { prop: 'supplier', name: 'Proveedor' },
+                    { prop: 'status', name: 'Estado' },
+                    { name: 'Action', cellTemplate: actionTemplate }
+                ]">
+            </ngx-datatable>
+        </div>
+    </mat-card>
+
+    <ng-template #actionTemplate let-row="row">
+        <button mat-button (click)="updateProduct(row)">Edit</button>
+        <button mat-button (click)="deleteProduct(row.id)">Delete</button>
+    </ng-template>
+    
+    <ng-template #productDialog>
+        <h4 mat-dialog-title>Add Product</h4>
+        <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+            <mat-form-field appearance="fill">
+                <mat-label>Select Category</mat-label>
+                <mat-select formControlName="category" required>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Select Brand</mat-label>
+                <mat-select formControlName="brand" required>
+                    <mat-option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Name</mat-label>
+                <input matInput formControlName="name" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Model</mat-label>
+                <input matInput formControlName="model" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Description</mat-label>
+                <textarea matInput formControlName="description" rows="5" required></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Quantity</mat-label>
+                <div class="input-group">
+                    <input matInput formControlName="quantity" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
+                    <mat-select formControlName="unit" required>
+                        <mat-option value="">Select Unit</mat-option>
+                        <mat-option value="Bags">Bags</mat-option>
+                        <mat-option value="Bottles">Bottles</mat-option>
+                        <mat-option value="Box">Box</mat-option>
+                        <mat-option value="Dozens">Dozens</mat-option>
+                        <mat-option value="Feet">Feet</mat-option>
+                        <mat-option value="Gallon">Gallon</mat-option>
+                        <mat-option value="Grams">Grams</mat-option>
+                        <mat-option value="Inch">Inch</mat-option>
+                        <mat-option value="Kg">Kg</mat-option>
+                        <mat-option value="Liters">Liters</mat-option>
+                        <mat-option value="Meter">Meter</mat-option>
+                        <mat-option value="Nos">Nos</mat-option>
+                        <mat-option value="Packet">Packet</mat-option>
+                        <mat-option value="Rolls">Rolls</mat-option>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Base Price</mat-label>
+                <input matInput formControlName="base_price" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Tax (%)</mat-label>
+                <input matInput formControlName="tax" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Supplier</mat-label>
+                <mat-select formControlName="supplier" required>
+                    <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div mat-dialog-actions>
+                <button mat-button type="submit" color="primary">Add</button>
+                <button mat-button type="button" (click)="dialog.closeAll()">Close</button>
+            </div>
+        </form>
+    </ng-template>
+</div>

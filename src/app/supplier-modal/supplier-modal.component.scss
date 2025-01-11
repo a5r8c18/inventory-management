@@ -1,0 +1,41 @@
+mat-dialog-content {
+    padding: 16px;
+    background-color: #f5f5f5;
+    
+    form {
+    display: flex;
+    flex-direction: column;
+    
+    mat-form-field {
+    margin-bottom: 16px;
+    width: 100%;
+    
+    mat-label {
+    color: #3a0303;
+    }
+    
+    input[matInput],
+    textarea[matInput] {
+    background-color: #410202;
+    color: white;
+    }
+    }
+    
+    mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    
+    button[mat-button] {
+    margin-left: 8px;
+    background-color: #7b1f1f;
+    color: white;
+    
+    &:first-child {
+    margin-left: 0;
+    }
+    }
+    }
+    }
+    }
+    

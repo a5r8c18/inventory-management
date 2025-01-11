@@ -1,0 +1,36 @@
+<div class="container">
+    <app-menus></app-menus>
+    <div class="row">
+    <div class="col-lg-12">
+    <mat-card class="rounded-0 shadow">
+    <mat-toolbar>
+    <div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
+    <h3 class="card-title">Inventario de productos</h3>
+    </div>
+    </div>
+    </mat-toolbar>
+    <div class="menu-container">
+    </div>
+    <mat-card-content>
+    <div class="row">
+    <div class="col-sm-12 table-responsive">
+    <ngx-datatable
+    class="bootstrap"
+    [rows]="dataSource"
+    [columns]="[
+    { prop: 'position', name: '#' },
+    { prop: 'name', name: 'Producto/Codigo' },
+    { prop: 'initialInventory', name: 'Inventario inicial' },
+    { prop: 'receivedInventory', name: 'Recibido' },
+    { prop: 'sentInventory', name: 'transferencias' },
+    { prop: 'availableInventory', name: 'Inventario disponible' }
+    ]">
+    </ngx-datatable>
+    </div>
+    </div>
+    </mat-card-content>
+    </mat-card>
+    </div>
+    </div>
+    </div>

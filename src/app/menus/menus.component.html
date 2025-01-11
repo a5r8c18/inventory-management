@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <div class="container-fluid">
+    <ul class="navbar-nav menus">
+    <li class="nav-item"><a mat-button routerLink="/inicio" id="index_menu">Inicio</a></li>
+    <li class="nav-item"><a mat-button routerLink="/customer" id="customer_menu">Cliente</a></li>
+    <li class="nav-item"><a mat-button routerLink="/category" id="category_menu">Categoria</a></li>
+    <li class="nav-item"><a mat-button routerLink="/brand" id="brand_menu">Marca</a></li>
+    <li class="nav-item"><a mat-button routerLink="/supplier" id="supplier_menu">Proveedor</a></li>
+    <li class="nav-item"><a mat-button routerLink="/product" id="product_menu">Producto</a></li>
+    <li class="nav-item"><a mat-button routerLink="/purchase" id="purchase_menu">Compras</a></li>
+    <li class="nav-item"><a mat-button routerLink="/order" id="order_menu">Pedidos</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+        <button mat-button [matMenuTriggerFor]="menu" class="badge bg-light border px-3 text-dark rounded-pill">
+        <span class="badge badge-pill bg-danger count"></span>
+        {{ userName }}
+        </button>
+        <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">Salir</button>
+        </mat-menu>
+        </li>
+        </ul>
+    </div>
+    </mat-toolbar>

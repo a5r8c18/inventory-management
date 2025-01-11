@@ -1,0 +1,26 @@
+<div class="container">
+    <app-menus></app-menus>
+    <mat-card>
+        <div class="mat-card-header">
+            <h3>Purchase List</h3>
+            <button mat-raised-button color="primary" (click)="openModal()">Add Purchase</button>
+        </div>
+        <div class="mat-card-content">
+            <ngx-datatable
+                class="bootstrap"
+                [rows]="purchases"
+                [columns]="[
+                    { prop: 'id', name: 'ID' },
+                    { prop: 'product', name: 'Product' },
+                    { prop: 'quantity', name: 'Quantity' },
+                    { prop: 'supplier', name: 'Supplier' },
+                    { name: 'Action', cellTemplate: actionTemplate }
+                ]">
+            </ngx-datatable>
+            <ng-template #actionTemplate let-row="row">
+                <button mat-button (click)="updatePurchase(row)">Edit</button>
+                <button mat-button (click)="deletePurchase(row.id)">Delete</button>
+            </ng-template>
+        </div>
+    </mat-card>
+</div>

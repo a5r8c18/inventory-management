@@ -1,0 +1,52 @@
+.container {
+    .row {
+    .col-lg-12 {
+    mat-card {
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    mat-toolbar {
+    background-color: #580303;
+    color: white;
+    
+    .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    }
+    }
+    
+    .menu-container {
+    display: flex; // Usar flexbox para alinear los elementos horizontalmente
+    justify-content: space-around; // Espacio entre los elementos
+    background-color: #800020; // Color de fondo deseado
+    padding: 10px; // Espacio alrededor de los elementos
+    
+    app-menus {
+    display: flex;
+    flex-direction: row; // Alinear los elementos del menú en fila
+    gap: 10px; // Espacio entre los elementos del menú
+    }
+    }
+    
+    mat-card-content {
+    .row {
+    .col-sm-12 {
+    &.table-responsive {
+    table {
+    &.mat-elevation-z8 {
+    th {
+    font-weight: bold;
+    }
+    tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
