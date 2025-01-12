@@ -46,9 +46,9 @@ export class CategoryComponent implements OnInit {
 categories: any[] = [];
 columns: any[] = [
 { prop: 'id', name: 'ID' },
-{ prop: 'name', name: 'Name' },
-{ prop: 'status', name: 'Status' },
-{ prop: 'action', name: 'Action' }
+{ prop: 'name', name: 'Nombre' },
+{ prop: 'status', name: 'Estado' },
+{ prop: 'action', name: 'Acciones' }
 ];
 rows: any[] = [];
 

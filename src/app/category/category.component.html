@@ -2,8 +2,8 @@
     <app-menus></app-menus>
     <mat-card>
         <div class="mat-card-header">
-        <h3>Category List</h3>
-        <button mat-raised-button color="primary" (click)="openCategoryDialog()">Add Category</button>
+        <h3>Lista de Categorías</h3>
+        <button mat-raised-button color="primary" (click)="openCategoryDialog()">Añadir Categoría</button>
         </div>
         <div class="mat-card-content">
         <ngx-datatable
@@ -20,14 +20,14 @@
     
     <!-- Modal -->
     <ng-template #categoryDialog let-dialogRef>
-    <h4 mat-dialog-title><mat-icon>add</mat-icon> Add Category</h4>
+    <h4 mat-dialog-title><mat-icon>add</mat-icon> Añadir Categoría</h4>
     <form #categoryForm="ngForm" (ngSubmit)="addCategory(categoryForm.value)">
         <mat-form-field appearance="fill">
-        <mat-label>Category Name</mat-label>
+        <mat-label>Nombre de Categoría</mat-label>
         <input matInput type="text" name="name" id="name" required ngModel />
         </mat-form-field>
         <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
+        <mat-label>Estado</mat-label>
         <mat-select name="status" id="status" required ngModel>
         <mat-option value="active">Active</mat-option>
         <mat-option value="inactive">Inactive</mat-option>

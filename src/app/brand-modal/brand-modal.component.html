@@ -6,7 +6,11 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
     <mat-label>Category ID</mat-label>
-    <input matInput formControlName="categoryid" required>
+    <mat-select formControlName="categoryid" required>
+    <mat-option *ngFor="let category of categories" [value]="category.id">
+    {{ category.name }} (ID: {{ category.id }})
+    </mat-option>
+    </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
     <mat-label>Status</mat-label>
@@ -18,3 +22,4 @@
     </div>
     </form>
     </mat-dialog-content>
+    

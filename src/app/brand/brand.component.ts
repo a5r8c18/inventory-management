@@ -42,10 +42,10 @@ export class BrandComponent {
 brands = []; // Replace with actual data source
 columns = [
 { prop: 'id', name: 'ID' },
-{ prop: 'bname', name: 'Name' },
-{ prop: 'categoryid', name: 'Category ID' },
-{ prop: 'status', name: 'Status' },
-{ prop: 'action', name: 'Action' }
+{ prop: 'bname', name: 'Nombre' },
+{ prop: 'categoryid', name: 'ID de Categoría' },
+{ prop: 'status', name: 'Estado' },
+{ prop: 'action', name: 'Acciones' }
 ];
 rows: any[] = [];
 BrandForm!: FormGroup;

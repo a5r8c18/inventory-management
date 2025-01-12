@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InventoryService {
-  private apiUrl = 'http://localhost:3000'; // Ensure this URL points to your backend server
+  private apiUrl = 'http://localhost:3000/categories'; // Ensure this URL points to your backend server
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class InventoryService {
   }
 
   getCategoryList(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/categories`);
+    return this.http.get<any[]>(this.apiUrl);
   }
 
   saveCategory(category: any): Observable<any> {
