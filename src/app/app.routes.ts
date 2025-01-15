@@ -10,6 +10,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { PurchaseModalComponent } from './purchase-modal/purchase-modal.component';
 import { SupplierModalComponent } from './supplier-modal/supplier-modal.component';
 import { MenusComponent } from './menus/menus.component';
+import { HomeComponent } from './home/home.component';
 
 
 export const routes: Routes = [
@@ -25,7 +26,8 @@ export const routes: Routes = [
     { path: 'order', component: OrderComponent },
     { path: 'menus', component: MenusComponent },
     { path: 'inventory', component: InventoryComponent },
+    { path: 'home', component:HomeComponent },
     { path: '', redirectTo: '/inventory', pathMatch: 'full' },
-    { path: '**', redirectTo: '/customer' }
+    { path: '**', redirectTo: '/home' }
 
 ];

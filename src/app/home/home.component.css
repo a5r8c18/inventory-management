@@ -1,0 +1,133 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    }
+    
+    .header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .header h1 {
+    margin: 0;
+    }
+    
+    .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    }
+    
+    .nav ul li {
+    margin: 0;
+    }
+    
+    .nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    }
+    
+    .nav ul li a:hover {
+    background-color: #34495e;
+    }
+    
+    .main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(250, 246, 25, 0.507);
+    }
+    
+    .intro {
+    text-align: center;
+    margin-bottom: 40px;
+    }
+    
+    .carousel {
+    margin-bottom: 40px;
+    margin-left: 500px;
+    height: 250px;
+    }
+    
+    .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0%;
+    }
+    
+    .carousel-slide {
+    display: none;
+    position: relative;
+    width: 50%;
+    transition: opacity 1s ease-in-out;
+    }
+    
+    .carousel-slide img {
+    width: 100%;
+    height: auto;
+    }
+    
+    .carousel-slide.active {
+    display: block;
+    opacity: 1;
+    }
+    
+    .features {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+    
+    .feature {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+    }
+    
+    .charts {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    }
+    
+    .chart {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    }
+
+    h3{
+        color: rgb(121, 11, 11);
+    }
+
+    h2{
+        color: rgb(12, 12, 12);
+    }
+
+    
