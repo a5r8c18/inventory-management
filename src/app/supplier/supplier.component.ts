@@ -48,9 +48,9 @@ this.loadSuppliers();
 this.initForm();
 this.columns = [
 { prop: 'id', name: 'ID' },
-{ prop: 'supplier_name', name: 'Supplier Name' },
-{ prop: 'address', name: 'Address' },
-{ prop: 'mobile', name: 'Mobile' },
+{ prop: 'name', name: 'Nombre del proveedor' },
+{ prop: 'address', name: 'Dirección' },
+{ prop: 'mobile', name: 'Teléfono' },
 { name: 'Action', cellTemplate: this.actionTemplate }
 ];
 }
@@ -65,7 +65,7 @@ this.dataSource = suppliers; // Actualizar dataSource con los datos de suppliers
 initForm(): void {
 this.supplierForm = this.fb.group({
 id: [''],
-supplier_name: ['', Validators.required],
+name: ['', Validators.required],
 address: ['', Validators.required],
 mobile: ['', Validators.required]
 });
@@ -92,18 +92,18 @@ this.dialog.closeAll();
 }
 
 deleteSupplier(id: number): void {
-this.supplierService.deleteSupplier(id).subscribe(() => {
-this.loadSuppliers();
-});
-}
-
-updateSupplier(supplier: any): void {
-this.supplierForm.patchValue(supplier);
-this.openSupplierDialog();
-}
-
-openAddSupplierModal(): void {
-this.supplierForm.reset();
-this.openSupplierDialog();
-}
+    this.supplierService.deleteSupplier(id).subscribe(() => {
+    this.loadSuppliers();
+    });
+    }
+    
+    updateSupplier(supplier: any): void {
+    this.supplierForm.patchValue(supplier);
+    this.openSupplierDialog();
+    }
+    
+    openAddSupplierModal(): void {
+    this.supplierForm.reset();
+    this.openSupplierDialog();
+    }
 }

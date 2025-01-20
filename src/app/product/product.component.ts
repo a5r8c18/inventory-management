@@ -11,7 +11,7 @@ import { ProductService } from '../product.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { InventoryService } from '../inventory.service';
 import { MenusComponent } from '../menus/menus.component';
-import { MatCard } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
 selector: 'app-product',
@@ -28,7 +28,7 @@ FormsModule,
 ReactiveFormsModule,
 NgxDatatableModule,
 MenusComponent,
-MatCard,
+MatCardModule,
 ],
 templateUrl: './product.component.html',
 styleUrls: ['./product.component.scss']
@@ -72,7 +72,6 @@ this.categories = categories;
 loadBrands(): void {
 this.inventoryService.getBrandList().subscribe((brands: any) => {
 this.brands = brands;
-console.log(this.brands); // Verifica que los datos se están cargando correctamente
 });
 }
 
@@ -85,7 +84,7 @@ this.suppliers = suppliers;
 initForm(): void {
 this.productForm = this.fb.group({
 id: [''],
-category: ['', Validators.required],
+category: [null, Validators.required],
 brand: ['', Validators.required],
 name: ['', Validators.required],
 model: ['', Validators.required],
@@ -105,16 +104,27 @@ this.dialog.open(this.productDialog);
 saveProduct(): void {
 if (this.productForm.valid) {
 const product = this.productForm.value;
-if (product.id) {
-this.productService.updateProduct(product.id, product).subscribe(() => {
-this.loadProducts();
-});
-} else {
-this.productService.addProduct(product).subscribe(() => {
-this.loadProducts();
-});
+product.category = product.category.id; // Asegúrate de enviar solo el ID de la categoría
+product.brand = product.brand.id; // Asegúrate de enviar solo el ID de la marca
+product.supplier = product.supplier.id; // Asegúrate de enviar solo el ID del proveedor
+
+// Manejo de valores nulos o vacíos
+product.quantity = product.quantity || 0; // Asigna 0 si quantity está vacío
+product.base_price = product.base_price || 0; // Asigna 0 si base_price está vacío
+product.tax = product.tax || 0; // Asigna 0 si tax está vacío
+
+// Eliminar el campo id si está vacío
+if (!product.id) {
+delete product.id;
 }
-this.dialog.closeAll();
+
+// Depuración y logging
+console.log('Product data:', product);
+
+this.productService.addProduct(product).subscribe(() => {
+this.loadProducts(); // Recargar la lista de productos
+this.dialog.closeAll(); // Cerrar el diálogo
+});
 }
 }
 

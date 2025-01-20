@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BrandService {
   private apiUrl = 'http://localhost:3000/brands'; // URL de la API
+	saveBrand: any;
 
   constructor(private http: HttpClient) {}
 

@@ -1,26 +1,36 @@
 <div class="container">
     <app-menus></app-menus>
     <mat-card>
-        <div class="mat-card-header">
-        <h3>Supplier List</h3>
-        <button mat-raised-button color="primary" (click)="openAddSupplierModal()">Add Supplier</button>
+    <div class="mat-card-header">
+    <h3>Lista de Proveedores</h3>
+    <button mat-raised-button color="primary" (click)="openAddSupplierModal()">Añadir Proveedor</button>
     </div>
     <div class="mat-card-content">
     <ngx-datatable
     class="bootstrap"
     [rows]="dataSource"
-    [columns]="columns">
+    [columns]="[
+    { prop: 'id', name: 'ID' },
+    { prop: 'name', name: 'Nombre de Proveedor' },
+    { prop: 'address', name: 'Dirección' },
+    { prop: 'mobile', name: 'Teléfono' },
+    { name: 'Acciones', cellTemplate: actionTemplate }
+    ]">
     </ngx-datatable>
     </div>
     </mat-card>
-
+    
+    <ng-template #actionTemplate let-row="row">
+    <button mat-button (click)="updateSupplier(row)">Editar</button>
+    <button mat-button (click)="deleteSupplier(row.id)">Eliminar</button>
+    </ng-template>
     
     <ng-template #supplierDialog>
     <h4 mat-dialog-title>Add Supplier</h4>
     <form [formGroup]="supplierForm" (ngSubmit)="saveSupplier()">
     <mat-form-field appearance="fill">
     <mat-label>Supplier Name</mat-label>
-    <input matInput formControlName="supplier_name" required />
+    <input matInput formControlName="name" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
     <mat-label>Address</mat-label>
@@ -36,4 +46,5 @@
     </div>
     </form>
     </ng-template>
+    </div>
     
