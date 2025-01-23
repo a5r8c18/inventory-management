@@ -11,6 +11,7 @@ import { PurchaseModalComponent } from './purchase-modal/purchase-modal.componen
 import { SupplierModalComponent } from './supplier-modal/supplier-modal.component';
 import { MenusComponent } from './menus/menus.component';
 import { HomeComponent } from './home/home.component';
+import { InventoryChartComponent } from './inventory-chart/inventory-chart.component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
     { path: 'order', component: OrderComponent },
     { path: 'menus', component: MenusComponent },
     { path: 'inventory', component: InventoryComponent },
+    { path: 'inventory-chart', component: InventoryChartComponent },
     { path: 'home', component:HomeComponent },
     { path: '', redirectTo: '/inventory', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }

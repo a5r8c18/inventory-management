@@ -21,8 +21,15 @@
     </mat-card>
     
     <ng-template #actionTemplate let-row="row">
-    <button mat-button (click)="updateSupplier(row)">Editar</button>
-    <button mat-button (click)="deleteSupplier(row.id)">Eliminar</button>
+    <button mat-icon-button (click)="updateSupplier(row)">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteSupplier(row.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewSupplier(row.id)">
+        <mat-icon>search</mat-icon>
+    </button>
     </ng-template>
     
     <ng-template #supplierDialog>

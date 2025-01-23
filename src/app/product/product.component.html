@@ -14,8 +14,10 @@
     { prop: 'category.name', name: 'Categoría' },
     { prop: 'brand.bname', name: 'Marca' },
     { prop: 'name', name: 'Nombre del producto' },
-    { prop: 'model', name: 'Modelo del producto' },
+    { prop: 'model', name: 'Modelo' },
     { prop: 'quantity', name: 'Cantidad' },
+    { prop: 'unit', name: 'Unidad de medida' },
+    { prop: 'base_price', name: 'Precio' },
     { prop: 'supplier.name', name: 'Proveedor' },
     { name: 'Acciones', cellTemplate: actionTemplate }
     ]">
@@ -24,9 +26,16 @@
     </mat-card>
     
     <ng-template #actionTemplate let-row="row">
-    <button mat-button (click)="updateProduct(row)">Editar</button>
-    <button mat-button (click)="deleteProduct(row.id)">Eliminar</button>
-    </ng-template>
+        <button mat-icon-button (click)="updateProduct(row)">
+        <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteProduct(row.id)">
+        <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="viewProduct(row.id)">
+            <mat-icon>search</mat-icon>
+        </button>
+        </ng-template>
     
     <ng-template #productDialog>
     <h4 mat-dialog-title>Añadir Producto</h4>
@@ -70,19 +79,20 @@
     <mat-select formControlName="unit" required>
     <mat-option value="">Select Unit</mat-option>
     <mat-option value="Bags">Bags</mat-option>
-    <mat-option value="Bottles">Bottles</mat-option>
-    <mat-option value="Box">Box</mat-option>
+    <mat-option value="Bottles">Botellas</mat-option>
+    <mat-option value="Box">Cajas</mat-option>
     <mat-option value="Dozens">Dozens</mat-option>
     <mat-option value="Feet">Feet</mat-option>
-    <mat-option value="Gallon">Gallon</mat-option>
-    <mat-option value="Grams">Grams</mat-option>
-    <mat-option value="Inch">Inch</mat-option>
+    <mat-option value="Gallon">Galones</mat-option>
+    <mat-option value="Grams">Gramos</mat-option>
+    <mat-option value="Inch">Pulgadas</mat-option>
     <mat-option value="Kg">Kg</mat-option>
-    <mat-option value="Liters">Liters</mat-option>
-    <mat-option value="Meter">Meter</mat-option>
+    <mat-option value="Liters">Litros</mat-option>
+    <mat-option value="Meter">Metros</mat-option>
     <mat-option value="Nos">Nos</mat-option>
-    <mat-option value="Packet">Packet</mat-option>
-    <mat-option value="Rolls">Rolls</mat-option>
+    <mat-option value="Packet">Paquetes</mat-option>
+    <mat-option value="Rolls">Rollos</mat-option>
+    <mat-option value="Unit">Unidades</mat-option>
     </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">

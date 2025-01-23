@@ -134,4 +134,11 @@ this.dialog.closeAll();
 });
 }
 }
+
+viewBrand(id:number): void{
+    this.brandService.getBrandById(id).subscribe((brand:any)=> {
+        // Mostrar detalles de la marca en un modal
+        })
+}
+
 }

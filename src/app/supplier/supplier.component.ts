@@ -106,4 +106,10 @@ deleteSupplier(id: number): void {
     this.supplierForm.reset();
     this.openSupplierDialog();
     }
+
+    viewSupplier(id:number): void {
+        this.supplierService.getSupplierById(id).subscribe((supplier:any)=> {
+            // Mostrar detalles del proveedor en un modal
+            })
+    }
 }

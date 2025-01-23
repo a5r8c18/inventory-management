@@ -25,6 +25,7 @@
     "@types/chart.js": "^2.9.41",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.7",
+    "d3": "^7.9.0",
     "highcharts": "^12.1.2",
     "highcharts-angular": "^4.0.1",
     "jquery": "^3.7.1",

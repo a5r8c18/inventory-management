@@ -138,4 +138,10 @@ updateProduct(product: any): void {
 this.productForm.patchValue(product);
 this.openProductDialog();
 }
+
+viewProduct(id: number): void {
+ this.productService.getProduct(id).subscribe ((product:any)=> {
+    // Mostrar detalles del producto en un modal
+    });
+    }
 }

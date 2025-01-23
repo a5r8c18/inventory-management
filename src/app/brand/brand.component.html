@@ -15,18 +15,21 @@
     { prop: 'categoryid', name: 'ID de Categoría' },
     { prop: 'status', name: 'Estado' },
     { name: 'Acciones', cellTemplate: actionTemplate }
-    ]"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="50"
-    [rowHeight]="'auto'">
+    ]">
     </ngx-datatable>
     </div>
     </mat-card>
     
     <ng-template #actionTemplate let-row="row">
-    <button mat-button (click)="updateBrand(row)">Editar</button>
-    <button mat-button (click)="deleteBrand(row.id)">Eliminar</button>
+    <button mat-icon-button (click)="updateBrand(row)">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteBrand(row.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewBrand(row.id)">
+        <mat-icon>search</mat-icon>
+    </button>
     </ng-template>
     
     <ng-template #brandDialog>

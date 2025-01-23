@@ -25,4 +25,8 @@ return this.http.put<any>(`${this.apiUrl}/${category.id}`, category);
 deleteCategory(categoryId: number): Observable<any> {
 return this.http.delete<any>(`${this.apiUrl}/${categoryId}`);
 }
+
+getCategoryById(id:number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    }
 }

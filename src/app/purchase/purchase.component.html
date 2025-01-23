@@ -1,26 +1,35 @@
 <div class="container">
     <app-menus></app-menus>
     <mat-card>
-        <div class="mat-card-header">
-            <h3>Purchase List</h3>
-            <button mat-raised-button color="primary" (click)="openModal()">Add Purchase</button>
-        </div>
-        <div class="mat-card-content">
-            <ngx-datatable
-                class="bootstrap"
-                [rows]="purchases"
-                [columns]="[
-                    { prop: 'id', name: 'ID' },
-                    { prop: 'product', name: 'Product' },
-                    { prop: 'quantity', name: 'Quantity' },
-                    { prop: 'supplier', name: 'Supplier' },
-                    { name: 'Action', cellTemplate: actionTemplate }
-                ]">
-            </ngx-datatable>
-            <ng-template #actionTemplate let-row="row">
-                <button mat-button (click)="updatePurchase(row)">Edit</button>
-                <button mat-button (click)="deletePurchase(row.id)">Delete</button>
-            </ng-template>
-        </div>
+    <div class="mat-card-header">
+    <h3>Lista de Compra</h3>
+    <button mat-raised-button color="primary" (click)="openModal()">Añadir Compra</button>
+    </div>
+    <div class="mat-card-content">
+    <ngx-datatable
+    class="bootstrap"
+    [rows]="purchases"
+    [columns]="[
+    { prop: 'id', name: 'ID' },
+    { prop: 'product.name', name: 'Producto' },
+    { prop: 'quantity', name: 'Cantidad' },
+    { prop: 'totalAmount', name: 'Monto Total' },
+    { prop: 'supplier.name', name: 'Proveedor' },
+    { prop: 'purchaseDate', name: 'Fecha de Compra' },
+    { name: 'Acciones', cellTemplate: actionTemplate }
+    ]">
+    </ngx-datatable>
+    <ng-template #actionTemplate let-row="row">
+    <button mat-icon-button (click)="updatePurchase(row)">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deletePurchase(row.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewPurchase(row.id)">
+        <mat-icon>search</mat-icon>
+    </button>
+    </ng-template>
+    </div>
     </mat-card>
-</div>
+    </div>

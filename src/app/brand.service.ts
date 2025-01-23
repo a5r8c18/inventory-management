@@ -26,4 +26,8 @@ export class BrandService {
   deleteBrand(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  getBrandById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    }
 }

@@ -1,56 +1,68 @@
 <div class="container">
     <app-menus></app-menus>
     <mat-card>
-        <div class="mat-card-header">
-            <h3>Manage Orders</h3>
-            <button mat-raised-button color="primary" (click)="openOrderDialog()">New Order</button>
-        </div>
-        <div class="mat-card-content">
-            <ngx-datatable
-                class="bootstrap"
-                [rows]="orders"
-                [columns]="[
-                    { prop: 'id', name: 'ID' },
-                    { prop: 'product', name: 'Product' },
-                    { prop: 'totalItem', name: 'Total Item' },
-                    { prop: 'customer', name: 'Customer' },
-                    { name: 'Action', cellTemplate: actionTemplate }
-                ]">
-            </ngx-datatable>
-        </div>
+    <div class="mat-card-header">
+    <h3>Listado de Órdenes</h3>
+    <button mat-raised-button color="primary" (click)="openOrderDialog()">Nueva Orden</button>
+    </div>
+    <div class="mat-card-content">
+    <ngx-datatable
+    class="bootstrap"
+    [rows]="orders"
+    [columns]="[
+    { prop: 'id', name: 'ID' },
+    { prop: 'product.name', name: 'Producto' },
+    { prop: 'quantity', name: 'Cantidad' },
+    { prop: 'customer.name', name: 'Cliente' },
+    { prop: 'totalAmount', name: 'Monto total' },
+    { prop: 'date', name: 'Fecha de Orden' },
+    { name: 'Action', cellTemplate: actionTemplate }
+    ]">
+    </ngx-datatable>
+    </div>
     </mat-card>
-
+    
     <ng-template #actionTemplate let-row="row">
-        <button mat-button (click)="updateOrder(row)">Edit</button>
-        <button mat-button (click)="deleteOrder(row.id)">Delete</button>
-        <button mat-button (click)="viewOrder(row.id)">View</button>
+    <button mat-icon-button (click)="updateOrder(row)">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteOrder(row.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewOrder(row.id)">
+        <mat-icon>search</mat-icon>
+    </button>
     </ng-template>
     
     <ng-template #orderDialog>
-        <h4 mat-dialog-title><mat-icon>add</mat-icon> Add Order</h4>
-        <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm.value)">
-            <input type="hidden" name="order_id" id="order_id" ngModel />
-            <input type="hidden" name="btn_action" id="btn_action" ngModel />
-            <mat-form-field appearance="fill">
-                <mat-label>Product Name</mat-label>
-                <mat-select name="product" id="product" required ngModel>
-                    <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Total Item</mat-label>
-                <input matInput type="text" name="shipped" id="shipped" required ngModel />
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Customer Name</mat-label>
-                <mat-select name="customer" id="customer" required ngModel>
-                    <mat-option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <div mat-dialog-actions>
-                <button mat-button type="submit" color="primary">Add</button>
-                <button mat-button type="button" (click)="dialogRef.close()">Close</button>
-            </div>
-        </form>
+    <h4 mat-dialog-title><mat-icon>add</mat-icon> Add Order</h4>
+    <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm.value)">
+    <input type="hidden" name="order_id" id="order_id" ngModel />
+    <input type="hidden" name="btn_action" id="btn_action" ngModel />
+    <mat-form-field appearance="fill">
+    <mat-label>Product Name</mat-label>
+    <mat-select name="product" id="product" required ngModel>
+    <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+    </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Total Item</mat-label>
+    <input matInput type="text" name="quantity" id="quantity" required ngModel />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Customer Name</mat-label>
+    <mat-select name="customer" id="customer" required ngModel>
+    <mat-option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</mat-option>
+    </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>Monto Total</mat-label>
+    <input matInput type="text" name="totalAmount" id="totalAmount" required ngModel />
+    </mat-form-field>
+    <div mat-dialog-actions>
+    <button mat-button type="submit" color="primary">Add</button>
+    <button mat-button type="button" (click)="dialogRef.close()">Close</button>
+    </div>
+    </form>
     </ng-template>
-</div>
+    </div>

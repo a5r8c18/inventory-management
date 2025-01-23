@@ -35,19 +35,19 @@ MatCard,
 templateUrl: './order.component.html',
 styleUrls: ['./order.component.scss'],
 animations: [
-	trigger('transitionMessages', [
-	state('void', style({ opacity: 0 })),
-	transition(':enter, :leave', [
-	animate(300)
-	])
-	])
-	]
+trigger('transitionMessages', [
+state('void', style({ opacity: 0 })),
+transition(':enter, :leave', [
+animate(300)
+])
+])
+]
 })
 export class OrderComponent implements OnInit {
 orders: any[] = [];
 products: any[] = [];
 customers: any[] = [];
-dialogRef!: MatDialogRef<OrderComponent>;
+dialogRef!: MatDialogRef<any>;
 
 @ViewChild('orderDialog') orderDialog!: TemplateRef<any>;
 
@@ -64,10 +64,23 @@ this.loadCustomers();
 }
 
 loadOrders(): void {
-	this.orderService.getOrders().subscribe((orders: any) => {
-		this.orders = orders;
-	});
+this.orderService.getOrders().subscribe({next: data => {
+    this.orders = data.map(order => ({
+      ...order,
+     date: this.convertToLocalDate(order.date)
+    }));
+    console.log('Purchases loaded:', this.orders);
+  },
+  error: error => {
+    console.error('Error loading purchases:', error);
+  }
+});
 }
+
+convertToLocalDate(isoDate: string): string {
+    const localDate = new Date(isoDate);
+    return localDate.toLocaleString(); // Convierte a la zona horaria local y muestra en formato legible
+  }
 
 loadProducts(): void {
 this.inventoryService.getProductList().subscribe((products: any) => {
@@ -82,25 +95,25 @@ this.customers = customers;
 }
 
 addOrder(order: any): void {
-	this.orderService.addOrder(order).subscribe(() => {
-		this.loadOrders();
-	});
+this.orderService.addOrder(order).subscribe(() => {
+this.loadOrders();
+});
 }
 
 updateOrder(order: any): void {
-	this.orderService.updateOrder(order.id, order).subscribe(() => {
-		this.loadOrders();
-	});
+this.orderService.updateOrder(order.id, order).subscribe(() => {
+this.loadOrders();
+});
 }
 
 deleteOrder(orderId: number): void {
-	this.orderService.deleteOrder(orderId).subscribe(() => {
-		this.loadOrders();
-	});
+this.orderService.deleteOrder(orderId).subscribe(() => {
+this.loadOrders();
+});
 }
 
 openOrderDialog(): void {
-this.dialog.open(this.orderDialog);
+this.dialogRef = this.dialog.open(this.orderDialog);
 }
 
 viewOrder(id: number): void {

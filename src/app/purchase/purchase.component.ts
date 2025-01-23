@@ -36,34 +36,72 @@ styleUrls: ['./purchase.component.scss']
 })
 export class PurchaseComponent implements OnInit {
 purchases: any[] = [];
+products: any[] = [];
+suppliers: any[] = [];
 purchaseForm!: FormGroup;
 
 @ViewChild('purchaseDialog') purchaseDialog!: TemplateRef<any>;
 
 constructor(
-  private purchaseService: PurchaseService,
-  public dialog: MatDialog,
-  private fb: FormBuilder,
-  private inventoryService: InventoryService
+private purchaseService: PurchaseService,
+public dialog: MatDialog,
+private fb: FormBuilder,
+private inventoryService: InventoryService
 ) {}
 
 ngOnInit(): void {
-this.loadPurchases();
-this.initForm();
-}
+    this.loadPurchases();
+    this.loadProducts();
+    this.loadSuppliers();
+    this.initForm();
+    }
 
-loadPurchases(): void {
-this.purchaseService.getPurchases().subscribe(purchases => {
-this.purchases = purchases;
+
+
+    loadPurchases(): void {
+        this.purchaseService.getPurchases().subscribe({
+          next: data => {
+            this.purchases = data.map(purchase => ({
+              ...purchase,
+              purchaseDate: this.convertToLocalDate(purchase.purchaseDate)
+            }));
+            console.log('Purchases loaded:', this.purchases);
+          },
+          error: error => {
+            console.error('Error loading purchases:', error);
+          }
+        });
+      }
+    
+      convertToLocalDate(isoDate: string): string {
+        const localDate = new Date(isoDate);
+        return localDate.toLocaleString(); // Convierte a la zona horaria local y muestra en formato legible
+      }
+
+loadProducts(): void {
+this.inventoryService.getProductList().subscribe(data => {
+this.products = data;
+console.log('Products loaded:', this.products); // Verifica que los productos se carguen
 });
 }
 
+loadSuppliers(): void {
+this.inventoryService.getSupplierList().subscribe(data => {
+this.suppliers = data;
+console.log('Suppliers loaded:', this.suppliers); // Verifica que los proveedores se carguen
+});
+}
+
+
+
+    
 initForm(): void {
 this.purchaseForm = this.fb.group({
 id: [''],
-product_id: ['', Validators.required],
+product: ['', Validators.required],
 quantity: ['', [Validators.required, Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')]],
-supplier_id: ['', Validators.required]
+totalAmount: ['', Validators.required],
+supplier: ['', Validators.required]
 });
 }
 
@@ -72,19 +110,19 @@ this.dialog.open(this.purchaseDialog);
 }
 
 savePurchase(): void {
-if (this.purchaseForm.valid) {
-const purchase = this.purchaseForm.value;
-if (purchase.id) {
-this.purchaseService.updatePurchase(purchase.id, purchase).subscribe(() => {
-this.loadPurchases();
-});
-} else {
-this.purchaseService.addPurchase(purchase).subscribe(() => {
-this.loadPurchases();
-});
-}
-this.dialog.closeAll();
-}
+    if (this.purchaseForm.valid) {
+        const purchase = this.purchaseForm.value;
+        if (purchase.id) {
+            this.purchaseService.updatePurchase(purchase.id, purchase).subscribe(() => {
+                this.loadPurchases();
+            });
+        } else {
+            this.purchaseService.addPurchase(purchase).subscribe(() => {
+                this.loadPurchases();
+            });
+        }
+        this.dialog.closeAll();
+    }
 }
 
 deletePurchase(id: number): void {
@@ -100,7 +138,11 @@ this.openPurchaseDialog();
 
 openModal(): void {
 const dialogRef = this.dialog.open(PurchaseModalComponent, {
-width: '400px'
+width: '400px',
+data: {
+products: this.products,
+suppliers: this.suppliers
+}
 });
 
 dialogRef.afterClosed().subscribe(result => {
@@ -109,4 +151,9 @@ this.loadPurchases();
 }
 });
 }
+viewPurchase(id: number): void {
+  this.purchaseService.getPurchaseById(id).subscribe((purchase: any) => {
+  // Mostrar detalles de la compra en un modal
+  });
+  }
 }

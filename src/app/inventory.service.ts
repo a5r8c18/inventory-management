@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
 providedIn: 'root'
 })
@@ -10,8 +11,8 @@ private apiUrl = 'http://localhost:3000'; // Asegúrate de que esta URL apunte a
 
 constructor(private http: HttpClient) {}
 
-getCustomerList(): Observable<any> {
-return this.http.get(`${this.apiUrl}/api/customers`);
+getCustomerList(): Observable<any[]> {
+return this.http.get<any[]>(`${this.apiUrl}/customers`);
 }
 
 saveCustomer(customer: any): Observable<any> {
@@ -54,44 +55,52 @@ deleteBrand(brandId: number): Observable<any> {
 return this.http.delete(`${this.apiUrl}/api/brands/${brandId}`);
 }
 
-getOrderDetails(): Observable<any> {
-return this.http.get(`${this.apiUrl}/api/orders`);
+getOrderDetails(): Observable<any[]> {
+return this.http.get<any[]>(`${this.apiUrl}/orders`);
 }
 
 saveOrder(order: any): Observable<any> {
-return this.http.post(`${this.apiUrl}/api/orders`, order);
+return this.http.post(`${this.apiUrl}/orders`, order);
 }
 
 updateOrder(order: any): Observable<any> {
-return this.http.put(`${this.apiUrl}/api/orders/${order.id}`, order);
+return this.http.put(`${this.apiUrl}/orders/${order.id}`, order);
 }
 
 deleteOrder(orderId: number): Observable<any> {
-return this.http.delete(`${this.apiUrl}/api/orders/${orderId}`);
+return this.http.delete(`${this.apiUrl}/orders/${orderId}`);
 }
 
 getPurchaseDetails(): Observable<any[]> {
-return this.http.get<any[]>(`${this.apiUrl}/api/purchases`);
+return this.http.get<any[]>(`${this.apiUrl}/purchases`);
 }
 
 addPurchase(purchase: any): Observable<any> {
-return this.http.post<any>(`${this.apiUrl}/api/purchases`, purchase);
+return this.http.post<any>(`${this.apiUrl}/purchases`, purchase);
 }
 
 updatePurchase(id: number, purchase: any): Observable<any> {
-return this.http.put<any>(`${this.apiUrl}/api/purchases/${id}`, purchase);
+return this.http.put<any>(`${this.apiUrl}/purchases/${id}`, purchase);
 }
 
 deletePurchase(id: number): Observable<any> {
-return this.http.delete<any>(`${this.apiUrl}/api/purchases/${id}`);
+return this.http.delete<any>(`${this.apiUrl}/purchases/${id}`);
 }
 
-getProductList(): Observable<any> {
-return this.http.get(`${this.apiUrl}/api/products`);
+getPurchaseDetailsByProductId(productId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/purchases?productId=${productId}`);
 }
 
-getSupplierList(): Observable<any> {
-return this.http.get(`${this.apiUrl}/api/suppliers`);
+getOrderDetailsByProductId(productId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/orders?productId=${productId}`);
+}
+
+getProductList(): Observable<any[]> {
+return this.http.get<any[]>(`${this.apiUrl}/api/products`);
+}
+
+getSupplierList(): Observable<any[]> {
+return this.http.get<any[]>(`${this.apiUrl}/api/suppliers`);
 }
 
 saveSupplier(supplier: any): Observable<any> {
@@ -121,4 +130,6 @@ return this.http.delete(`${this.apiUrl}/api/products/${productId}`);
 getBrandList(): Observable<any[]> {
 return this.http.get<any[]>(`${this.apiUrl}/api/brands`);
 }
+
+
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 providedIn: 'root'
 })
 export class OrderService {
-private apiUrl = 'http://localhost:3000/api/orders';
+private apiUrl = 'http://localhost:3000/orders';
 
 constructor(private http: HttpClient) {}
 
@@ -29,4 +29,17 @@ return this.http.delete<any>(`${this.apiUrl}/${id}`);
 getOrderById(id: number): Observable<any> {
 return this.http.get<any>(`${this.apiUrl}/${id}`);
 }
+
+getOrdersByProductId(productId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?productId=${productId}`);
+}
+}
+
+// Interface for Order
+export interface Order {
+id: number;
+productId: number; // Llave foránea que relaciona con Product
+quantity: number;
+totalAmount: number;
+// otros campos...
 }

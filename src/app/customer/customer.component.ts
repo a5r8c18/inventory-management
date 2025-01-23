@@ -99,4 +99,10 @@ export class CustomerComponent implements OnInit {
       }
     });
   }
+
+  viewCustomer(id:number): void {
+    this.customerService.getCustomerById(id).subscribe((customer:any)=> {
+      // Mostrar detalles del cliente en un modal
+      })
+    }
 }

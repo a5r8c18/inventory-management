@@ -9,14 +9,27 @@
         <ngx-datatable
         class="bootstrap"
         [rows]="categories"
-        [columns]="columns"
-        [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="'auto'">
+        [columns]="[{ prop: 'id', name: 'ID' },
+        { prop: 'name', name: 'Nombre' },
+        { prop: 'status', name: 'Estado' },
+        { name: 'Acciones', cellTemplate: this.actionTemplate }]">
+        
         </ngx-datatable>
         </div>
-    </mat-card>
+        </mat-card>
+
+
+        <ng-template #actionTemplate let-row="row">
+          <button mat-icon-button (click)="updateCategory(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteCategory(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button (click)="viewCategory(row.id)">
+            <mat-icon>search</mat-icon>
+        </button>
+        </ng-template>
     
     <!-- Modal -->
     <ng-template #categoryDialog let-dialogRef>
@@ -39,16 +52,7 @@
         </div>
         </form>
     </ng-template>
-
-    <!-- Action Template -->
-  <ng-template #actionTemplate let-row="row">
-    <button mat-icon-button color="primary" (click)="updateCategory(row)">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button color="warn" (click)="deleteCategory(row.id)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </ng-template>
+  
 </div>
    
     

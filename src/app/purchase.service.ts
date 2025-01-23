@@ -29,4 +29,17 @@ return this.http.delete<any>(`${this.apiUrl}/${id}`);
 getPurchaseById(id: number): Observable<any> {
 return this.http.get<any>(`${this.apiUrl}/${id}`);
 }
+
+getPurchasesByProductId(productId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?productId=${productId}`);
+}
+}
+
+// Interface for Purchase
+export interface Purchase {
+id: number;
+productId: number; // Llave foránea que relaciona con Product
+quantity: number;
+purchaseDate: string;
+// otros campos...
 }

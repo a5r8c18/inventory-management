@@ -44,17 +44,19 @@ animate(300)
 })
 export class CategoryComponent implements OnInit {
 categories: any[] = [];
-columns: any[] = [
-{ prop: 'id', name: 'ID' },
-{ prop: 'name', name: 'Nombre' },
-{ prop: 'status', name: 'Estado' },
-{ prop: 'action', name: 'Acciones' }
-];
+
 rows: any[] = [];
 
 @ViewChild('categoryDialog') categoryDialog!: TemplateRef<any>;
 @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
 constructor(private categoryService: CategoryService, private dialog: MatDialog) {}
+
+columns: any[] = [
+	{ prop: 'id', name: 'ID' },
+	{ prop: 'name', name: 'Nombre' },
+	{ prop: 'status', name: 'Estado' },
+	{ name: 'Acciones', cellTemplate: this.actionTemplate }
+	];
 
 ngOnInit(): void {
 this.loadCategories();
@@ -98,5 +100,11 @@ this.loadCategories(); // Recargar la lista de categorías
 
 openCategoryDialog(): void {
 this.dialog.open(this.categoryDialog);
+}
+
+viewCategory(id:number): void {
+this.categoryService.getCategoryById(id).subscribe((category:any)=> {
+	// Mostrar detalles de la categoria en un modal
+	})
 }
 }
